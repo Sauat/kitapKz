@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/readers")
 @RequiredArgsConstructor
 public class ReaderController {
-    private  final ReaderRepository readerRepository;
+    private final ReaderRepository readerRepository;
     private final ReaderService readerService;
 
     @PostMapping
-  public Reader addReader(@RequestBody ReaderDTO readerDTO) {
+    public Reader addReader(@RequestBody ReaderDTO readerDTO) {
         return readerService.addReader(readerDTO);
     }
 }

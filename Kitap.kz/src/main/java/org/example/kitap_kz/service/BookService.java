@@ -6,12 +6,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 public interface BookService {
-    Book addBook( BookDTO book);
+    Book addBook(BookDTO book);
 
     Book updateBook(@RequestBody Book book, @PathVariable Long id);
 
     Book deleteBookByTitle(@RequestParam("title") String title);
 
     Book findById(Long id);
+
+
+    Book createBook(Book book);
+
+    List<Book> getAvailableBooks();
 }

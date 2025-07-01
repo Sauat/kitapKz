@@ -16,6 +16,8 @@ public class BookDTOMapper {
         bookDTO.setId(book.getId());
         bookDTO.setBookTitle(book.getBookTitle());
         bookDTO.setAuthorId(book.getAuthor().getId());
+        bookDTO.setIsbn(book.getIsbn());
+        bookDTO.setAvailable(book.isAvailable());
         return bookDTO;
     }
 
@@ -24,6 +26,8 @@ public class BookDTOMapper {
         book.setId(bookDTO.getId());
         book.setBookTitle(bookDTO.getBookTitle());
         book.setAuthor(authorService.findAuthorById(bookDTO.getAuthorId()));
+        book.setIsbn(bookDTO.getIsbn());
+        book.setAvailable(bookDTO.isAvailable());
         return book;
     }
 }

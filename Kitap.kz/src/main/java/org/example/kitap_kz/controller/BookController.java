@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.example.kitap_kz.dto.BookDTO;
 import org.example.kitap_kz.entity.Book;
 import org.example.kitap_kz.entity.BookLoan;
+import org.example.kitap_kz.mapper.BookDTOMapper;
+import org.example.kitap_kz.mapper.BookLoanDtoMapper;
 import org.example.kitap_kz.repo.BookRepository;
 import org.example.kitap_kz.service.BookService;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,8 @@ import java.util.Optional;
 public class BookController {
     private final BookRepository bookRepository;
     private final BookService bookService;
+    private final BookLoanDtoMapper bookLoanDtoMapper;
+    private final BookDTOMapper bookDTOMapper;
 
     @GetMapping
     public List<Book> getBooks() {
@@ -41,8 +45,14 @@ public class BookController {
 
     @GetMapping("/books/available")
     public List<Book> getAvailableBooks() {
-        return bookRepository.findByavailable(true);
+        return bookService.getAvailableBooks();
 
 
+    }
+
+    @PostMapping("/create")
+    public Book createBook(@RequestBody BookDTO bookDTO) {
+        Book book = bookDTOMapper.toBook(bookDTO);
+        return bookService.createBook(book);
     }
 }
